@@ -4,35 +4,28 @@ Use a dictionary to
 """
 from re import sub
 
+
 def word_frequency(in_string):
-    pass
-
-
-
-"""
-def word_frequency():
     '''Returns top 20 most frequent words from input file'''
-    file_in = open('sample.txt')
-    file_lines = file_in.readlines()
-    file_in.close()
-
     word_dictionary = {}
-    line_words = []
-
-    for line in file_lines:
-        # Strip newlines and split line
-        line_words = repr(line.rstrip('\n')).split()
+    counted_dictionary = []
 
         # Clean each word of each line and check if it is in word_dictionary
-        for word in line_words:
-            # Clean word by removing punctuation
-            # (periods, commas, single quote, double quotes, colons,
-            # parenthesis, and double dashes)
-            word = sub(r'^[.,\'":()\[\]]*|[.,\'":()\[\]]*$|', '', word.lower())
-            print(word)
-            word_dictionary.get(word, 1)
-    return line_words[:21]
-"""
+    for word in in_string.split():
+        word = word_cleaner(word)
+        existing_count_of_this_word = word_dictionary.get(word, 1)
+        word_dictionary[word] = existing_count_of_this_word + 1
+    print(word_dictionary)
+    counted_dictionary = zip(*word_dictionary)
+    counted_dictionary = sorted(counted_dictionary, reverse=True)
+    return counted_dictionary[:20]
+
+
+def word_cleaner(word):
+    # Clean word by removing punctuation: periods, commas, single quote,
+    # double quotes, colons, parenthesis, and double dashes)
+    return sub(r'^[.,\'":()\[\]]*|[.,\'":()\[\]]*$|', '', word.lower())
+
 
 def main():
     in_string = ''
