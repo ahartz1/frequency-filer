@@ -14,7 +14,7 @@ def word_frequency(in_string):
 
     counted_dictionary = sorted(word_dictionary.items(), key=lambda w: w[1], reverse=True)
     for i in counted_dictionary[:20]:
-        print("{} {}".format(counted_dictionary[i][0]), counted_dictionary[i][1]))
+        print("{} {}".format(i[0], i[1]))
 
     return word_dictionary
 
