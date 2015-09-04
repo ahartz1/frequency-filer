@@ -4,7 +4,12 @@ Use a dictionary to
 """
 from re import sub
 
+def word_frequency(in_string):
+    pass
 
+
+
+"""
 def word_frequency():
     '''Returns top 20 most frequent words from input file'''
     file_in = open('sample.txt')
@@ -27,10 +32,13 @@ def word_frequency():
             print(word)
             word_dictionary.get(word, 1)
     return line_words[:21]
-
+"""
 
 def main():
-    word_frequency()
+    in_string = ''
+    with open('sample.txt') as f:
+        in_string = ' '.join(f.readlines()).replace('\n', ' ')
+    return word_frequency(in_string)
 
 
 if __name__=='__main__':
