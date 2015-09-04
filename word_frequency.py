@@ -50,10 +50,10 @@ def word_cleaner(word):
     return sub(r'^[.,\'":;()\[\]!]*|[.,\'":;()\[\]!]*$', '', word.lower())
 
 
-def histogram(in_dict):
-    counted_dictionary = sorted(in_dict.items(), key=lambda w: w[1], reverse=True)
-    for i in counted_dictionary[:20]:
-        print("{} {}".format(i[0], i[1]*'#'))
+# def histogram(in_dict):
+#     counted_dictionary = sorted(in_dict.items(), key=lambda w: w[1], reverse=True)
+#     for i in counted_dictionary[:20]:
+#         print("{} {}".format(i[0], i[1]*'#'))
 
 
 def main():
@@ -65,7 +65,7 @@ def main():
         with open(sys.argv[1]) as f:
             in_string = ' '.join(f.readlines()).replace('\n', ' ')
 
-    histogram(word_frequency(in_string))
+    # histogram(word_frequency(in_string))
     return word_frequency(in_string)
 
 
