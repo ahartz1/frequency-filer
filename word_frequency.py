@@ -1,5 +1,5 @@
 from re import sub
-
+import sys
 
 def word_frequency(in_string):
     '''Returns top 20 most frequent words from input file'''
@@ -27,8 +27,12 @@ def word_cleaner(word):
 
 def main():
     in_string = ''
-    with open('sample.txt') as f:
-        in_string = ' '.join(f.readlines()).replace('\n', ' ')
+    if len(sys.argv) == 0:
+        with open('sample.txt') as f:
+            in_string = ' '.join(f.readlines()).replace('\n', ' ')
+    else:
+        with open(sys.argv[1]) as f:
+            in_string = ' '.join(f.readlines()).replace('\n', ' ')
     return word_frequency(in_string)
 
 
