@@ -13,12 +13,12 @@ def word_frequency(in_string):
         # Clean each word of each line and check if it is in word_dictionary
     for word in in_string.split():
         word = word_cleaner(word)
-        existing_count_of_this_word = word_dictionary.get(word, 1)
+        existing_count_of_this_word = word_dictionary.get(word, 0)
         word_dictionary[word] = existing_count_of_this_word + 1
-
+    
     # Use word_dictionary's word:count pairs to build list
     for entry, count in word_dictionary.items():
-        counted_dictionary.append([count, entry])
+        counted_dictionary.append([count, [entry]])
     counted_dictionary = sorted(counted_dictionary, reverse=True)
 
     print(counted_dictionary[:20])
