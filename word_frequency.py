@@ -1,5 +1,6 @@
 from re import sub
 import sys
+from copy import deepcopy
 
 def word_frequency(in_string):
     '''Returns top 20 most frequent words from input file'''
@@ -34,10 +35,11 @@ def remove_common(word_dictionary):
                     "wants,was,we,were,what,when,where,which,while,who,whom,why,"
                     "will,with,would,yet,you,your"]
     COMMON_LIST = ''.join(COMMON_WORDS).split(',')
+    export_dictionary = deepcopy(word_dictionary)
     for key, value in word_dictionary.items():
         if key in COMMON_LIST:
-            del word_dictionary[key]
-    return word_dictionary
+            del export_dictionary[key]
+    return export_dictionary
 
 
 
@@ -45,6 +47,12 @@ def word_cleaner(word):
     # Clean word by removing punctuation: periods, commas, single quote,
     # double quotes, colons, parenthesis, and double dashes)
     return sub(r'^[.,\'":;()\[\]!]*|[.,\'":;()\[\]!]*$', '', word.lower())
+
+
+def histogram(in_dict):
+    counted_dictionary = sorted(in_dict.items(), key=lambda w: w[1], reverse=True)
+    for i in counted_dictionary[:20]:
+        print("{} {}".format(i[0], i[1]*'#'))
 
 
 def main():
@@ -55,6 +63,7 @@ def main():
     else:
         with open(sys.argv[1]) as f:
             in_string = ' '.join(f.readlines()).replace('\n', ' ')
+    histogram(word_frequency(in_string))
     return word_frequency(in_string)
 
 
