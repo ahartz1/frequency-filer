@@ -58,12 +58,13 @@ def word_cleaner(word):
 
 def main():
     in_string = ''
-    if len(sys.argv) == 0:
+    if len(sys.argv) == 1:
         with open('sample.txt') as f:
             in_string = ' '.join(f.readlines()).replace('\n', ' ')
     else:
-        with open(sys.argv[1]) as f:
-            in_string = ' '.join(f.readlines()).replace('\n', ' ')
+        # print(sys.argv[1])
+        with open(sys.argv[1]) as g:
+            in_string = ' '.join(g.readlines()).replace('\n', ' ')
 
     # histogram(word_frequency(in_string))
     return word_frequency(in_string)
