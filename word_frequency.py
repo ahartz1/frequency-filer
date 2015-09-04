@@ -1,7 +1,3 @@
-"""
-1. Open a file.
-Use a dictionary to
-"""
 from re import sub
 
 
@@ -10,25 +6,23 @@ def word_frequency(in_string):
     word_dictionary = {}
     counted_dictionary = []
 
-        # Clean each word of each line and check if it is in word_dictionary
+        # Clean each word and check if it is in word_dictionary
     for word in in_string.split():
         word = word_cleaner(word)
         existing_count_of_this_word = word_dictionary.get(word, 0)
         word_dictionary[word] = existing_count_of_this_word + 1
-    
-    # Use word_dictionary's word:count pairs to build list
-    for entry, count in word_dictionary.items():
-        counted_dictionary.append([count, [entry]])
-    counted_dictionary = sorted(counted_dictionary, reverse=True)
 
-    print(counted_dictionary[:20])
-    return counted_dictionary[:20]
+    counted_dictionary = sorted(word_dictionary.items(), key=lambda w: w[1], reverse=True)
+    for i in counted_dictionary[:20]:
+        print("{} {}".format(counted_dictionary[i][0]), counted_dictionary[i][1]))
+
+    return word_dictionary
 
 
 def word_cleaner(word):
     # Clean word by removing punctuation: periods, commas, single quote,
     # double quotes, colons, parenthesis, and double dashes)
-    return sub(r'^[.,\'":()\[\]]*|[.,\'":()\[\]]*$|', '', word.lower())
+    return sub(r'^[.,\'":;()\[\]!]*|[.,\'":;()\[\]!]*$|', '', word.lower())
 
 
 def main():
