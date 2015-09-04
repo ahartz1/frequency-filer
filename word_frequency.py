@@ -15,9 +15,12 @@ def word_frequency(in_string):
         word = word_cleaner(word)
         existing_count_of_this_word = word_dictionary.get(word, 1)
         word_dictionary[word] = existing_count_of_this_word + 1
-    for entry, count in word_dictionary.items()
+
+    # Use word_dictionary's word:count pairs to build list
+    for entry, count in word_dictionary.items():
         counted_dictionary.append([count, entry])
     counted_dictionary = sorted(counted_dictionary, reverse=True)
+
     print(counted_dictionary[:20])
     return counted_dictionary[:20]
 
