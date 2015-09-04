@@ -1,5 +1,5 @@
 from re import sub
-
+import sys
 
 def word_frequency(in_string):
     '''Returns top 20 most frequent words from input file'''
@@ -44,13 +44,17 @@ def remove_common(word_dictionary):
 def word_cleaner(word):
     # Clean word by removing punctuation: periods, commas, single quote,
     # double quotes, colons, parenthesis, and double dashes)
-    return sub(r'^[.,\'":;()\[\]!]*|[.,\'":;()\[\]!]*$|', '', word.lower())
+    return sub(r'^[.,\'":;()\[\]!]*|[.,\'":;()\[\]!]*$', '', word.lower())
 
 
 def main():
     in_string = ''
-    with open('sample.txt') as f:
-        in_string = ' '.join(f.readlines()).replace('\n', ' ')
+    if len(sys.argv) == 0:
+        with open('sample.txt') as f:
+            in_string = ' '.join(f.readlines()).replace('\n', ' ')
+    else:
+        with open(sys.argv[1]) as f:
+            in_string = ' '.join(f.readlines()).replace('\n', ' ')
     return word_frequency(in_string)
 
 
